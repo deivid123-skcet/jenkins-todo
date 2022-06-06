@@ -41,11 +41,7 @@ steps:
     pip install -r requirements.txt
     pip install unittest-xml-reporting
   displayName: 'Install prerequisites'
-- task: PublishBuildArtifacts@1
-  inputs:
-    PathtoPublish: '$(System.DefaultWorkingDirectory)'
-    ArtifactName: 'drop'
-    publishLocation: 'Container'
+
 - task: replacetokens@5
   inputs:
     rootDirectory: '$(System.DefaultWorkingDirectory)/to_do'
@@ -62,3 +58,9 @@ steps:
     enableRecursion: false
     useLegacyPattern: false
     enableTelemetry: true
+    
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(System.DefaultWorkingDirectory)'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
