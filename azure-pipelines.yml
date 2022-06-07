@@ -35,12 +35,28 @@ steps:
       project_location = path.dirname(path.abspath(manage_py))
       print('Found Django project in', project_location)
       print('##vso[task.setvariable variable=projectRoot]{}'.format(project_location))
-
+- task: replacetokens@5
+  inputs:
+    rootDirectory: '_deivid123-skcet_jenkins-todo/to_do'
+    targetFiles: 'settings.py'
+    encoding: 'auto'
+    tokenPattern: 'custom'
+    tokenPrefix: '('''
+    tokenSuffix: ''')'
+    writeBOM: false
+    actionOnMissing: 'warn'
+    keepToken: false
+    actionOnNoFiles: 'continue'
+    enableTransforms: false
+    enableRecursion: false
+    useLegacyPattern: false
+    enableTelemetry: true
 - script: |
     python -m pip install --upgrade pip setuptools wheel
     pip install -r requirements.txt
     pip install unittest-xml-reporting
   displayName: 'Install prerequisites'    
+
 - task: PublishBuildArtifacts@1
   inputs:
     PathtoPublish: '$(System.DefaultWorkingDirectory)'
