@@ -37,7 +37,7 @@ steps:
       print('##vso[task.setvariable variable=projectRoot]{}'.format(project_location))
 - task: replacetokens@5
   inputs:
-    rootDirectory: '_deivid123-skcet_jenkins-todo/to_do'
+    rootDirectory: '$(System.DefaultWorkingDirectory)/to_do'
     targetFiles: 'settings.py'
     encoding: 'auto'
     tokenPattern: 'custom'
