@@ -7,5 +7,11 @@ WORKDIR /usr/src/app
 #RUN pip install --no-cache-dir -r requirements.txt
 # Expondo a porta da APP
 EXPOSE 8000
+    # Fazendo a migracao inicial dos dados
+RUN python manage.py makemigrations
+RUN python manage.py migrate
+    # Criando o superuser para acessar a app
+ RUN python manage.py createsuperuser
 # Executando o comando para subir a aplicacao
-CMD ["gunicorn", "to_do.wsgi:application", "--bind", "0.0.0.0:8000", "--workers", "3"]
+CMD python manage.py runserver 0:8000
+#CMD ["gunicorn", "to_do.wsgi:application", "--bind", "0.0.0.0:8000", "--workers", "3"]
