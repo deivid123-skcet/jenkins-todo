@@ -3,7 +3,6 @@ FROM python:3.6
 COPY _deivid123-skcet_jenkins-todo/ /usr/src/app
 #Definindo o diretorio onde o CMD será executado e copiando o arquivo de requerimentos
 WORKDIR /usr/src/app
-COPY requirements.txt ./
 # Instalando os requerimentos com o PIP
 #RUN pip install --no-cache-dir -r requirements.txt
 # Expondo a porta da APP
